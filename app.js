@@ -1,14 +1,22 @@
 const express = require("express")
+const cors = require("cors")
 const mysql = require("mysql")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-const env = require("dotenv")
+
+require("dotenv").config()
 
 const app = express();
 
-app.get("/",(req,res)=>{
+app.use(express.json())
+app.use(cors())
+
+/* app.get("/",(req,res)=>{
     res.render("index")
+}) */
+
+const port = process.env.PORT ||  3002;
+app.listen(port, (req,res)=>{
+    console.log(`Server Started on port ${port}`)
 })
-app.listen(3001, ()=>{
-    console.log("Server Started on port 3001")
-})
+const db = mysql.connect()
