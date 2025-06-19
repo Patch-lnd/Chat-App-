@@ -1,4 +1,4 @@
-const userModel = require("../models/userModel.js")
+/* const userModel = require("../models/userModel.js") */
 const bcrypt =  require("bcryptjs")
 const validator =  require("validator")
 const jwt =  require("jsonwebtoken")
@@ -8,6 +8,7 @@ const register = async(req,res)=>{
     const {name, email, password} = req.body 
     let user = await userModel.findOne({email})
     if (user) return res.status(400).json("User with the given Email Already Existing");
+    if(!name || !email || !password) return res.status(400).json("All fields are required")
 }
 // We included "register" in an Object when exporting since we will ad other exports like login, ect
-module.exports = {register};
+module.exports = {register}

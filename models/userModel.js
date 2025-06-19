@@ -1,4 +1,5 @@
 const mysql = require("mysql")
+const db = require("../db")
 
 // Using Schema to shape our documents
 // We use the keyword "new" because this is a class and we use the keyword+Class to creat an Object
