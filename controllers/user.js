@@ -9,6 +9,10 @@ const register = async(req,res)=>{
     let user = await userModel.findOne({email})
     if (user) return res.status(400).json("User with the given Email Already Existing");
     if(!name || !email || !password) return res.status(400).json("All fields are required")
+    
+    // Using validator Package
+    if(!validator.isEmail(email)) return res.status(400).json("email must be valid")
+    if(!validator.isStrongPassword(password)) return res.status(400).json("The password is weak")
 }
 // We included "register" in an Object when exporting since we will ad other exports like login, ect
 module.exports = {register}

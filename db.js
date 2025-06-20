@@ -10,7 +10,7 @@ const db = mysql.createConnection({
     database: process.env.DB
 })
 
-// Connecting tjo the Data Base
+// Connecting to the Data Base
 db.connect((err)=>{
     if(err){
         // Displays the error message with the error variable in case of DB connection error
