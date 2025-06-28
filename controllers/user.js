@@ -4,12 +4,17 @@ const validator =  require("validator")
 const jwt =  require("jsonwebtoken")
 //const { use } = require("react")
 
-const creatToken = __dirname;
+const creatToken = (_id)=>{
+    const jwtKey = process.env.JWT_SECRET_KEY;
+    return jwt.sign({_id}, jwtKey, {expiresIn: "3days"})
+}
 
 
 
 // As I am using "await" need to ass "async" before the fonction containing it
 const register = async(req,res)=>{
+    try{
+        
     // Extracting the desired data from the html form in the body 
     const {name, email, password} = req.body 
     let user = await userModel.findOne({email})
@@ -28,6 +33,13 @@ const register = async(req,res)=>{
    password = await bcrypt.hash(password, salt);
       // Saving nuw User
     user = "INSERT ".userModel({name,email,password})
+
+    const token = creatToken(user._id)
+    res.status(200).json({_id: user.id, name, email, token})
+    }catch(err){
+        console.log(err);
+        res.status(500).json({err})
+    }
 }
 // We included "register" in an Object when exporting since we will ad other exports like login, ect
 module.exports = {register}
