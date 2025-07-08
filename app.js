@@ -23,6 +23,10 @@ app.get("/", (req,res)=>{
     res.send("Welcome to We Chat !")
 })
 
+app.get("/register", (req,res)=>{
+    res.render("register")
+})
+
 
 // Initialiszing the server port
 const port = process.env.PORT ||  3002;
