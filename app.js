@@ -9,6 +9,15 @@ const db = require("./db")
 require("dotenv").config()
 const app = express();
 
+// Sets "EJS" view engine for my app
+app.set("view engine", "ejs");
+    
+// Ensures that the values we are grabbing from the form comes as JSON
+app.use(express.json())
+// Makes sure I can take data from any form
+app.use(express.urlencoded({extended: true}))
+
+
 app.use(express.json())
 app.use(cors())
 // Giving our API for users
