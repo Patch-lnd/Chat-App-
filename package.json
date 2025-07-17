@@ -11,5 +11,16 @@
     "mysql": "^2.18.1",
     "nodemon": "^3.1.10",
     "validator": "^13.15.15"
-  }
+  },
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "An online chatting app",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app"
+  },
+  "author": "",
+  "license": "ISC"
 }
